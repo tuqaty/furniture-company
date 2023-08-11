@@ -25,33 +25,33 @@ class HallController extends Controller
     public function create(Request $request)
     {
         // Hall::create($request);
-        // return view('hall.creat');
+        return view('hall.create');
     }
 
     public function store(Request $request)
     {
-        //
+
     }
 
 
     public function show(hall $hall)
     {
-        //
+        
     }
 
     public function edit(hall $hall)
     {
-        //
+        
     }
 
     public function update(Request $request, hall $hall)
     {
-        //
+        
     }
 
 
     public function destroy(hall $hall)
     {
-        //
+        
     }
 }

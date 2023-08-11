@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('is_essential');
             $table->double('quantity');
+            $table->string('unit');
             $table->double('quantity_limit');
             $table->double('unit_price');
             $table->timestamps();

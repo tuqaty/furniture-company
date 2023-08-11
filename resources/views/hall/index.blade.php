@@ -152,8 +152,10 @@ $(document).ready(function(){
 </script>
 <ul>
     <li>
-        <a href="{{'hall.create'}}">create</a>
-        <a href="#">home</a>
+        <!-- <a href="{{'hall.create'}}">create</a>
+        <a class="create" title="create" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+        <br>
+        <a href="#">home</a> -->
 
     </li>
 </ul>
@@ -165,7 +167,7 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-sm-8"><h2>halls <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                        <a href="{{ route('hall.create') }}" class="btn btn-success" style="float: right">Create Post</a>
+                        <a href="{{ route('hall.create') }}" class="btn btn-success" style="float: right">Create hall</a>
                     </div>
                 </div>
             </div>
