@@ -20,7 +20,7 @@
 		font-family: 'Open Sans', sans-serif;
 	}
 	.table-wrapper {
-		width: 700px;
+		width: 900px;
 		margin: 30px auto;
         background: #FFFDC0;
         padding: 20px;	
@@ -154,7 +154,7 @@ $(document).ready(function(){
 </script>
 <ul>
     <li>
-        <!-- <a href="{{'hall.create'}}">create</a>
+        <!-- <a href="{{'user.create'}}">create</a>
         <a class="create" title="create" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
         <br>
         <a href="#">home</a> -->
@@ -167,21 +167,21 @@ $(document).ready(function(){
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>halls <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>users <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                        <a href="{{ route('hall.create') }}" class="btn btn-success" style="float: right">Create hall</a>
+                        <a href="{{ route('user.create') }}" class="btn btn-success" style="float: right">Create user</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>name</th>
-                        <th width = 220px >address</th>
-                        <th>telephone</th>
-                        <!-- <th>show</th>--> 
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th width=85px>name</th>
+                        <th width = 150px >phone</th>
+                        <th width=75px>role_id</th> 
+                        <th width=220px>email</th>
+                        <th width=90px>Delete</th>
+                        <th width=90px>Edit</th>
                     </tr>
                 </thead>
                 <!-- <tbody>
@@ -197,17 +197,17 @@ $(document).ready(function(){
                     </tr>
                     --}} -->
 
-                    @foreach($halls as $hall)
+                    @foreach($users as $user)
                     <tr>
-                        <td>{{ $hall->name }}</td>
-                        <td>{{ $hall->address }}</td>
-                        <td>{{ $hall->telephone }}</td>
-                        
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->phone_number }}</td>
+                        <td>{{ $user->role_id}}</td>
+                        <td>{{ $user->email}}</td>
                         <td>
-                            <a href="{{ route('hall.delete', $hall->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
+                            <a href="{{ route('user.delete', $user->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
                         </td>
                         <td>
-                            <a href="{{ route('hall.edit', $hall->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
                         </td>
                     </tr>
                     @endforeach

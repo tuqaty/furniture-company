@@ -44,29 +44,30 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create hall</div>
+                <div class="card-header">Update hall</div>
                 <div class="card-body">
-                    <form  action="{{ route('hall.store') }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('hall.update' , $hall->id) }}" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             @csrf
+                            @method('PUT')
                             <label class="label">hall address: </label>
-                            <input type="text" name="address" class="form-control"  required/>
+                            <input type="text" name="address" value="{{old('address',$hall->address)}}" class="form-control" required/>
                         </div>
                         <div class="form-group">
                             <label class="label">hall telephoe: </label>
-                            <input type="text" name="telephone" class="form-control"  required/>
+                            <input type="text" name="telephone" value="{{$hall->telephone}}" class="form-control"  required/>
                         </div>
-                        <div class="form-group">                        
+                        <div class="form-group">
                             <label class="label">hall manager: </label>
-                            <input type="number" name="user_id" class="form-control"   required/>
+                            <input type="number" name="user_id" value="{{$hall->user_id}}" class="form-control"   required/>
                         </div>
                         <div class="form-group">                        
                             <label class="label">hall name: </label>
-                            <input type="text" name="name"  class="form-control"   required/>
+                            <input type="text" name="name" value="{{$hall->name}}" class="form-control"   required/>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn2">save</button>
+                            <button type="submit" class="btn2">Update</button>
                             <!-- <input type="submit" class="btn btn-outline-warning" /> -->
                         </div>
                        
@@ -76,3 +77,9 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+

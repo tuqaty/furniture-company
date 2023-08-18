@@ -24,14 +24,21 @@ class HallController extends Controller
     
     public function create(Request $request)
     {
-        // Hall::create($request);
         return view('hall.create');
     }
 
     public function store(Request $request)
     {
+       $hall =  Hall::create(
+            [
+                'address'=> $request->address,
+                'telephone'=> $request->telephone,
+                'user_id'=> $request->user_id,
+                'name'=>$request->name
 
-    }
+            ]);
+            return redirect()->route('hall.index')->with('status', 'hall added Successfully');
+        }
 
 
     public function show(hall $hall)
@@ -39,19 +46,27 @@ class HallController extends Controller
         
     }
 
-    public function edit(hall $hall)
+    public function edit($id)
     {
-        
+        $hall = Hall::find($id);
+        return view('hall.edit',compact('hall'));
     }
 
-    public function update(Request $request, hall $hall)
+    public function update(Request $request, $id)
     {
-        
+        $hall = Hall::find($id);
+        $hall->name = $request->name;
+        $hall->address = $request->address;
+        $hall->telephone = $request->telephone;
+        $hall->user_id = $request->user_id;
+        $hall->save();
+        return redirect()->route('hall.index')->with('message','hall  updated successfully');
     }
 
 
-    public function destroy(hall $hall)
+    public function destroy(int  $id)
     {
-        
+        Hall::where("id" ,$id )->delete();
+        return redirect()->route('hall.index')->with('status', 'hall deleted Successfully');
     }
 }

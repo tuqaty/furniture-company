@@ -44,26 +44,34 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create hall</div>
+                <div class="card-header">Create resource</div>
                 <div class="card-body">
-                    <form  action="{{ route('hall.store') }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('resource.store') }}" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             @csrf
-                            <label class="label">hall address: </label>
-                            <input type="text" name="address" class="form-control"  required/>
+                            <label class="label">resource name: </label>
+                            <input type="text" name="name" class="form-control" required/>
                         </div>
                         <div class="form-group">
-                            <label class="label">hall telephoe: </label>
-                            <input type="text" name="telephone" class="form-control"  required/>
+                            <label class="label">resource is_essential: </label>
+                            <input type="checkbox" name="is_essential"  class="form-control"  required/>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">quantity : </label>
+                            <input type="number" name="quantity" class="form-control"   required/>
                         </div>
                         <div class="form-group">                        
-                            <label class="label">hall manager: </label>
-                            <input type="number" name="user_id" class="form-control"   required/>
+                            <label class="label">resource unit: </label>
+                            <input type="text" name="unit" class="form-control"   required/>
                         </div>
                         <div class="form-group">                        
-                            <label class="label">hall name: </label>
-                            <input type="text" name="name"  class="form-control"   required/>
+                            <label class="label">resource quantity_limit: </label>
+                            <input type="number" name="quantity_limit" class="form-control"   required/>
+                        </div>
+                        <div class="form-group">                        
+                            <label class="label">resource unit_price: </label>
+                            <input type="number" name="unit_price" class="form-control"   required/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn2">save</button>

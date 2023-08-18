@@ -44,26 +44,26 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create hall</div>
+                <div class="card-header">Create product</div>
                 <div class="card-body">
-                    <form  action="{{ route('hall.store') }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             @csrf
-                            <label class="label">hall address: </label>
-                            <input type="text" name="address" class="form-control"  required/>
+                            <label class="label">product name: </label>
+                            <input type="text" name="name" class="form-control"  required/>
                         </div>
                         <div class="form-group">
-                            <label class="label">hall telephoe: </label>
-                            <input type="text" name="telephone" class="form-control"  required/>
+                            <label class="label">product description: </label>
+                            <input type="text" name="description" class="form-control"  required/>
                         </div>
                         <div class="form-group">                        
-                            <label class="label">hall manager: </label>
-                            <input type="number" name="user_id" class="form-control"   required/>
+                            <label class="label">profit rate: </label>
+                            <input type="number" name="profit_rate" class="form-control"   required/>
                         </div>
                         <div class="form-group">                        
-                            <label class="label">hall name: </label>
-                            <input type="text" name="name"  class="form-control"   required/>
+                            <label class="label">product image: </label>
+                            <input type="file" name="image"  class="form-control"   required/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn2">save</button>

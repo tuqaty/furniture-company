@@ -44,29 +44,34 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create hall</div>
+                <div class="card-header">Update user</div>
                 <div class="card-body">
-                    <form  action="{{ route('hall.store') }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('user.update' , $user->id) }}" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             @csrf
-                            <label class="label">hall address: </label>
-                            <input type="text" name="address" class="form-control"  required/>
+                            @method('PUT')
+                            <label class="label">user name: </label>
+                            <input type="text" name="name" value="{{old('address',$user->name)}}" class="form-control" required/>
                         </div>
                         <div class="form-group">
-                            <label class="label">hall telephoe: </label>
-                            <input type="text" name="telephone" class="form-control"  required/>
-                        </div>
-                        <div class="form-group">                        
-                            <label class="label">hall manager: </label>
-                            <input type="number" name="user_id" class="form-control"   required/>
-                        </div>
-                        <div class="form-group">                        
-                            <label class="label">hall name: </label>
-                            <input type="text" name="name"  class="form-control"   required/>
+                            <label class="label">user phone: </label>
+                            <input type="text" name="phone_number" value="{{$user->phone_number}}" class="form-control"  required/>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn2">save</button>
+                            <label class="label">image : </label>
+                            <input type="file" name="image" value="{{$user->image}}" class="form-control"   required/>
+                        </div>
+                        <div class="form-group">                        
+                            <label class="label">user role: </label>
+                            <input type="text" name="role_id" value="{{$user->role_id}}" class="form-control"   required/>
+                        </div>
+                        <div class="form-group">                        
+                            <label class="label">user email: </label>
+                            <input type="email" name="email" value="{{$user->email}}" class="form-control"   required/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn2">Update</button>
                             <!-- <input type="submit" class="btn btn-outline-warning" /> -->
                         </div>
                        
@@ -76,3 +81,9 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+

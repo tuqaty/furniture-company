@@ -15,12 +15,14 @@
     body {
         color: #404E67;
         background: #F5F7FA;
+        background-color: #9EFAB2;
+
 		font-family: 'Open Sans', sans-serif;
 	}
 	.table-wrapper {
-		width: 700px;
-		margin: 30px auto;
-        background: #fff;
+		width: 920px;
+		margin: 10px auto;
+        background: #FFFDC0;
         padding: 20px;	
         box-shadow: 0 1px 1px rgba(0,0,0,.05);
     }
@@ -152,8 +154,10 @@ $(document).ready(function(){
 </script>
 <ul>
     <li>
-        <a href="{{'resource.create'}}">create</a>
-        <a href="#">home</a>
+        <!-- <a href="{{'resource.create'}}">create</a>
+        <a class="create" title="create" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+        <br>
+        <a href="#">home</a> -->
 
     </li>
 </ul>
@@ -165,49 +169,49 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-sm-8"><h2>resources <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                        <a href="{{ route('resources.create') }}" class="btn btn-success" style="float: right">Create Post</a>
+                        <a href="{{ route('resource.create') }}" class="btn btn-success" style="float: right">Create resource</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Unit_Price</th>
-                        <th>show</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th width = 125px>name</th>
+                        <th width = 150px>is_essential</th>
+                        <th width = 100px>quantity</th>
+                        <th width = 75px>unit</th> 
+                        <th width = 150px>quantity_limit</th>
+                        <th width = 100px>unit_price</th>
+                        <th width = 85px>Delete</th>
+                        <th width = 85px>Edit</th>
                     </tr>
                 </thead>
-                <tbody>
+                <!-- <tbody>
                     {{-- <tr>
                         <td>1</td>
                         <td>Post1</td>
                         <td>(171) 555-2222</td>
                         <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a> -->
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
-                    --}}
+                    --}} -->
 
                     @foreach($resources as $resource)
                     <tr>
-                        <td>{{ $resource->id }}</td>
                         <td>{{ $resource->name }}</td>
-                        <td>{{ $resource->quantity}}</td>
+                        <td>{{ $resource->is_essential }}</td>
+                        <td>{{ $resource->quantity }}</td>
+                        <td>{{ $resource->unit}}</td>
+                        <td>{{ $resource->quantity_limit}}</td>
                         <td>{{ $resource->unit_price}}</td>
                         <td>
-                            <a href="{{ route('resources.show', $resource->id) }}" class="btn btn-primary">show</a>
+                            <a href="{{ route('resource.delete', $resource->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
                         </td>
                         <td>
-                            <a href="{{ route('resources.delete', $resource->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('resources.delete', $resource->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
+                            <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
                         </td>
                     </tr>
                     @endforeach
