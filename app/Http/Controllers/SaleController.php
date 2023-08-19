@@ -4,82 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Models\sale;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //
+        $sales = Sale::all();
+        return view('sale.index',compact('sales'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        return View('sale.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        Sale::create($request->all());
+        return redirect()->route('sale.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(sale $sale)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(sale $sale)
+
+    public function edit($id)
     {
-        //
+        $sale = Sale::find($id);
+        return view('sale.edit',compact('sale'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, sale $sale)
+    
+    public function update(Request $request, $id)
     {
-        //
+        $sale = Sale::find($id);   
+        $sale->date = $request->date;
+        $sale->quantity = $request->quantity;
+        $sale->price = $request->price;
+        $sale->hall_id = $request->hall_id ;
+        $sale->product_id = $request->product_id; 
+        $sale->save();
+    
+        return redirect()->route('sale.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(sale $sale)
+    public function destroy($id)
     {
-        //
+        Sale::where('id',$id)->delete();
+        return redirect()->route('sale.index');
     }
 }

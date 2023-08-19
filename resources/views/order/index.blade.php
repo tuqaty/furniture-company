@@ -154,7 +154,7 @@ $(document).ready(function(){
 </script>
 <ul>
     <li>
-        <!-- <a href="{{'hall.create'}}">create</a>
+        <!-- <a href="{{'order.create'}}">create</a>
         <a class="create" title="create" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
         <br>
         <a href="#">home</a> -->
@@ -167,20 +167,19 @@ $(document).ready(function(){
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>halls <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>orders <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                        <a href="{{ route('hall.create') }}" class="btn btn-success" style="float: right">Create hall</a>
+                        <a href="{{ route('order.create') }}" class="btn btn-success" style="float: right">Create order</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        
-                        <th>name</th>
-                        <th width = 220px >address</th>
-                        <th>telephone</th>
-                        <!-- <th>show</th>--> 
+                        <th>date</th>
+                        <th width = 220px >note</th>
+                        <th>hall_id</th>
+                        <th>status</th> 
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -198,17 +197,17 @@ $(document).ready(function(){
                     </tr>
                     --}} -->
 
-                    @foreach($halls as $hall)
+                    @foreach($orders as $order)
                     <tr>
-                        <td>{{ $hall->name }}</td>
-                        <td>{{ $hall->address }}</td>
-                        <td>{{ $hall->telephone }}</td>
-                        
+                        <td>{{ $order->date }}</td>
+                        <td>{{ $order->note }}</td>
+                        <td>{{ $order->hall_id }}</td>
+                        <td>{{$order->status}}</td>
                         <td>
-                            <a href="{{ route('hall.delete', $hall->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
+                            <a href="{{ route('order.delete', $order->id) }}" class="btn btn-primary" style="background-color: #ff3907">delete </a>
                         </td>
                         <td>
-                            <a href="{{ route('hall.edit', $hall->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
+                            <a href="{{ route('order.edit', $order->id) }}" class="btn btn-primary" style="background-color: #FFC107">Edit</a>
                         </td>
                     </tr>
                     @endforeach

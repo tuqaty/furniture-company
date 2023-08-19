@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+       
     public function index()
     {
-        //
+        $notifications = Notification::all();
+        return view('notification.index',compact('notifications'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        return View('notification.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        Notification::create($request->all());
+        return redirect()->route('notification.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Notification $notification)
+   
+    public function show(notification $notification)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Notification $notification)
+
+    public function edit($id)
     {
-        //
+        $notification = Notification::find($id);
+        return view('notification.edit',compact('notification'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Notification $notification)
+    
+    public function update(Request $request, $id)
     {
-        //
+        $notification = Notification::find($id);   
+        $notification->title = $request->title;
+        $notification->body = $request->body;
+        $notification->read_at = $request->read_at;
+        $notification->user_id = $request->user_id ;
+        $notification->save();
+    
+        return redirect()->route('notification.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Notification $notification)
+    public function destroy($id)
     {
-        //
+        Notification::where('id',$id)->delete();
+        return redirect()->route('notification.index');
     }
 }

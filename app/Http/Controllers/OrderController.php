@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('order.index',compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        return View('order.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        Order::create($request->all());
+        return redirect()->route('order.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+   
+    public function show(order $order)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
+
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('order.edit',compact('order'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
+    
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);   
+        $order->date = $request->date;
+        $order->note = $request->note;
+        $order->status = $request->status;
+        $order->hall_id = $request->hall_id ;
+        $order->save();
+    
+        return redirect()->route('order.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(order $order)
+    public function destroy($id)
     {
-        //
+        Order::where('id',$id)->delete();
+        return redirect()->route('order.index');
     }
 }

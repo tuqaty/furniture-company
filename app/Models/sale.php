@@ -10,7 +10,11 @@ class Sale extends Model
     use HasFactory;
     protected $fillable=[
 
-        'date','quantity','price','hall_id','product_id'
+        'date',
+        'quantity',
+        'price',
+        'hall_id',
+        'product_id'
     ];
     protected $casts=['date'=>'datetime'];
     public function hall()
